@@ -72,7 +72,7 @@ def download(url_list, username, max_download=None):
 def api(username, number=20):
     url_list = scrape(username, int(number))
     data = {}
-    for i in range(0, number):
+    for i in range(0, int(number) - 1):
         data[i] = url_list[i]
     return jsonify(data)
 
