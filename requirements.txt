@@ -1,0 +1,12 @@
+click==6.6
+Flask==0.11.1
+futures==3.0.5
+itsdangerous==0.24
+Jinja2==2.8
+MarkupSafe==0.23
+pbr==1.10.0
+requests==2.11.1
+six==1.10.0
+stevedore==1.15.0
+tqdm==4.8.4
+Werkzeug==0.11.11

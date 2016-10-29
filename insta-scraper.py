@@ -1,6 +1,8 @@
-import requests
 import os
 import urllib.request
+from flask import Flask, request, jsonify
+import json
+import requests
 import uuid
 from pprint import pprint
 
@@ -9,6 +11,7 @@ media_url = '/media/'
 main_url = ''
 max_id = 0
 more = False
+app = Flask(__name__)
 
 
 def scrape(username, max_urls=None):
@@ -65,8 +68,32 @@ def download(url_list, username, max_download=None):
         output.close()
 
 
+@app.route('/photos/<username>/<number>', methods=['GET', 'POST'])
+def api(username, number=20):
+    url_list = scrape(username, number)
+    data = {}
+    for i in range(0, number):
+        data[i] = url_list[i]
+    return jsonify(data)
+
+
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({
+        'author': 'Vivek Singh Bhadauria',
+        'author_url': 'http://viveksb007.github.io/',
+        'base_url': 'insta-scraper.herokuapp.com',
+        'endpoints': {
+            'Direct Reply': '/photos/{username}/{number of photos}',
+        }
+    })
+
+
 if __name__ == '__main__':
-    username = input("Enter Insta username\n")
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+    '''
     url_list = scrape(username, 20)
     if url_list is not None:
         download(url_list, username, 20)
+    '''
