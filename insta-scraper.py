@@ -14,7 +14,7 @@ more = False
 app = Flask(__name__)
 
 
-def scrape(username, max_urls=0):
+def scrape(username, max_urls=None):
     main_url = base_url + username + media_url
     response = requests.get(main_url).json()
     item_list = response['items']
@@ -70,7 +70,7 @@ def download(url_list, username, max_download=None):
 
 @app.route('/photos/<username>/<number>', methods=['GET', 'POST'])
 def api(username, number=20):
-    url_list = scrape(username, number)
+    url_list = scrape(username, int(number))
     data = {}
     for i in range(0, number):
         data[i] = url_list[i]
