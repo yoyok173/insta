@@ -4,7 +4,6 @@ from flask import Flask, request, jsonify
 import json
 import requests
 import uuid
-from pprint import pprint
 
 base_url = 'https://www.instagram.com/'
 media_url = '/media/'
@@ -34,8 +33,6 @@ def scrape(username, max_urls=None):
             break
         url_list = url_list + more_data(max_id, username)
 
-    pprint(url_list)
-    pprint(len(url_list))
     return url_list
 
 
@@ -72,7 +69,7 @@ def download(url_list, username, max_download=None):
 def api(username, number=20):
     url_list = scrape(username, int(number))
     data = {}
-    for i in range(0, int(number) - 1):
+    for i in range(0, int(number)):
         data[i] = url_list[i]
     return jsonify(data)
 
