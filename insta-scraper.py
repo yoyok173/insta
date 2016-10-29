@@ -74,7 +74,7 @@ def api(username, number=20):
     else:
         data['status'] = 'ok'
         for i in range(0, int(number)):
-            data[i] = url_list[i]
+            data[str(i)] = url_list[i]
     return jsonify(data)
 
 
