@@ -14,7 +14,7 @@ more = False
 app = Flask(__name__)
 
 
-def scrape(username, max_urls=None):
+def scrape(username, max_urls=0):
     main_url = base_url + username + media_url
     response = requests.get(main_url).json()
     item_list = response['items']
