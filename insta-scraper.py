@@ -69,7 +69,7 @@ def download(url_list, username, max_download=None):
 def api(username, number=20):
     url_list = scrape(username, int(number))
     data = {}
-    if len(url_list) <= 0:
+    if url_list is None:
         data['status'] = 'not-okay'
     else:
         data['status'] = 'ok'
