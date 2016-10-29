@@ -69,8 +69,12 @@ def download(url_list, username, max_download=None):
 def api(username, number=20):
     url_list = scrape(username, int(number))
     data = {}
-    for i in range(0, int(number)):
-        data[i] = url_list[i]
+    if len(url_list) <= 0:
+        data['status'] = 'not-okay'
+    else:
+        data['status'] = 'ok'
+        for i in range(0, int(number)):
+            data[i] = url_list[i]
     return jsonify(data)
 
 
