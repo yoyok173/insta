@@ -85,7 +85,7 @@ def index():
         'author_url': 'http://viveksb007.github.io/',
         'base_url': 'insta-scraper.herokuapp.com',
         'endpoints': {
-            'Direct Reply': '/photos/{username}/{number of photos}',
+            'Returns URLS of images': '/photos/{username}/{number of photos}',
         }
     })
 
